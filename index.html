@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lotion Pump</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    @import "./css/bootstrap.css";
+    @import "./css/selfDefined.css";
+  </style>
+  <script src="./js/jquery.js"></script>
+  <script src="./js/bootstrap.js"></script>
+
+
+</script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl as ctrl">
+<div class="container">
+  <div class="jumbotron">
+    <h1>Plastic Lotion Pumps</h1>
+    <p>This following video will briefly introduce how plastic lotion pump works.</p>
+  </div>
+  <div id="player" class="alignVideo"></div>
+  <hr></hr>
+  <form class="form-horizontal" >
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Question</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="ctrl.question" placeholder="Question">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-1 control-label">Description</label>
+      <div class="col-sm-10">
+        <textarea type="text" class="form-control" ng-model="ctrl.description" placeholder="Description" rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-9 col-sm-10">
+        <button class="btn btn-primary btn-md" ng-click="ctrl.submitQuestion()" style="width:165px;">Post!</button>
+      </div>
+    </div>
+  </form>
+  <hr></hr>
+  <h4 style="font-weight: normal">hotest</h4>
+  <table class="table table-bordered">
+    <tr ng-repeat="(key, content) in ctrl.questions" ng-if="ctrl.getLength(content.followup) >= 3" >
+    <td style="font-weight:bold">{{content.question}}
+        <button class="btn btn-primary btn-xs" >{{ctrl.getLength(content.followup)}}</button>
+        <div class="collapse" id="{{key}}">
+          <div>
+            <div class="well" style="margin-top:10px"><p>
+              {{content.description}}
+            </p></div>
+            <footer style="float:right; padding-bottom:30px"><h6>Published by {{content.username}}</h6></footer>
+          </div>
+
+          <div style="margin-top:60px" ng-repeat = "(followkey, follow_content) in content.followup">
+            <div class="well" style="margin-top:10px"><p>
+              {{follow_content.followup}}
+            </p></div>
+            <footer style="float:right"><h6>Published by {{follow_content.username}}</h6></footer>
+          </div>
+
+          <hr></hr>
+          <div>
+            <h4 style="font-weight: normal; margin-left:15px">comments</h4>
+            <div class="col-sm-10">
+              <textarea type="text" style="font-weight: normal" class="form-control"
+                        ng-model="ctrl.followupMap[key]" placeholder="Please follow your comments here" rows="5"></textarea>
+              <button class="btn btn-primary btn-md" type="submit" style="width:165px;margin-top:20px" ng-click="ctrl.submitFollowup(key)">Follow!</button>
+            </div>
+          </div>
+        </div>
+    </td>
+    <td>
+      <button data-toggle="collapse" data-target="#{{key}}" class="btn btn-default" >expand</button>
+    </td>
+  </tr>
+  </table>
+
+  <hr></hr>
+  <h4 style="font-weight: normal">All discussions</h4>
+
+  <table class="table table-bordered">
+    <tr ng-repeat="(key, content) in ctrl.questions" ng-if="ctrl.getLength(content.followup) < 3" >
+    <td style="font-weight:bold">{{content.question}}
+        <button class="btn btn-primary btn-xs" >{{ctrl.getLength(content.followup)}}</button>
+        <div class="collapse" id="{{key}}">
+          <div>
+            <div class="well" style="margin-top:10px"><p>
+              {{content.description}}
+            </p></div>
+            <footer style="float:right; padding-bottom:30px"><h6>Published by {{content.username}}</h6></footer>
+          </div>
+
+          <div style="margin-top:60px" ng-repeat = "(followkey, follow_content) in content.followup">
+            <div class="well" style="margin-top:10px"><p>
+              {{follow_content.followup}}
+            </p></div>
+            <footer style="float:right"><h6>Published by {{follow_content.username}}</h6></footer>
+          </div>
+
+          <hr></hr>
+          <div>
+            <h4 style="font-weight: normal; margin-left:15px">comments</h4>
+            <div class="col-sm-10">
+              <textarea type="text" style="font-weight: normal" class="form-control"
+                        ng-model="ctrl.followupMap[key]" placeholder="Please follow your comments here" rows="5"></textarea>
+              <button class="btn btn-primary btn-md" type="submit" style="width:165px;margin-top:20px" ng-click="ctrl.submitFollowup(key)">Follow!</button>
+            </div>
+          </div>
+        </div>
+    </td>
+    <td>
+      <button data-toggle="collapse" data-target="#{{key}}" class="btn btn-default" >expand</button>
+    </td>
+  </tr>
+  </table>
+
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Welcome</h4>
+        </div>
+        <div class="modal-body">
+          <p>To discuss with peers, please provide a username</p>
+          <input type="text" class="form-control" ng-model="ctrl.username">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">save</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+</body>
+
+<script src="./js/angular.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+<script src="./js/index.js"></script>
+</html>

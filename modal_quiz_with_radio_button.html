@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>Learning Quiz</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+ @import "./css/bootstrap.css";
+</style>
+
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Learning Quiz</h1>
+    </div>
+    <p3>What will happen when users push the actuator of a lotion pump? </p3>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="A"> The liquid in the bottle is pushed by some mechanism directly and enters in to the tube
+      </label>
+    </div>
+
+    <h5 class="text-danger" id="A_incorrect">Incorrect. Think it over?</h5>
+    <button class="text-danger" id="A_hint" onclick="window.location.href = 'hintA.html'">view hints</Button>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="B"> The air in the chamber is pushed out of the actuator.
+      </label>
+    </div>
+
+    <h5 class="text-warning" id="B_incorrect">You're almost there! Try to find another correct answer! </h5>
+    <h5 class="text-success" id="B_correct">Well Done!</h5>
+    <button class="text-warning" id="B_incorrect_hint" onclick="window.location.href = 'hintB.html'" style="margin-bottom:20px">view hints</button>
+    <button class="text-success" id="B_correct_hint" onclick="window.location.href = 'hintB.html'" style="margin-bottom:20px">view hints</button>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="C"> The air pressure in the chamber firstly decreases, then increases to keep the balance.
+      </label>
+    </div>
+
+     <h5 class="text-danger" id="C_incorrect">Incorrect. Think it over?</h5>
+     <button class="text-danger" id="C_hint" onclick="window.location.href = 'hintC.html'">view hints</Button>
+
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="D"> The liquid that is already in the chamber is drawn from the chamber, through the stem and actuator, and dispenses out of the pump and onto the user’s hand
+      </label>
+    </div>
+    <h5 class="text-warning" id="D_incorrect">You're almost there! Try to find another correct answer!</h5>
+    <h5 class="text-success" id="D_correct">Well done!</h5>
+    <button class="text-warning" id="D_incorrect_hint" onclick="window.location.href = 'hintD.html'" style="margin-bottom:20px">view hints</button>
+    <button class="text-success" id="D_correct_hint" onclick="window.location.href = 'hintD.html'" style="margin-bottom:20px">view hints</button>
+    <br>
+    <button class="btn btn-default" onclick="validation()" >Submit</button>
+  </div>
+
+
+
+<script type="text/javascript">
+$("#A_incorrect").hide();
+$("#B_incorrect").hide();
+$("#C_incorrect").hide();
+$("#D_incorrect").hide();
+$("#B_correct").hide();
+$("#D_correct").hide();
+$("#A_hint").hide();
+$("#B_incorrect_hint").hide();
+$("#B_correct_hint").hide();
+$("#C_hint").hide();
+$("#D_incorrect_hint").hide();
+$("#D_correct_hint").hide();
+
+function validation() {
+    $("#A_incorrect").hide();
+    $("#B_incorrect").hide();
+    $("#C_incorrect").hide();
+    $("#D_incorrect").hide();
+    $("#B_correct").hide();
+    $("#D_correct").hide();
+    $("#A_hint").hide();
+    $("#B_incorrect_hint").hide();
+    $("#B_correct_hint").hide();
+    $("#C_hint").hide();
+    $("#D_incorrect_hint").hide();
+    $("#D_correct_hint").hide();
+    var A_checked = $('#A').is(":checked");
+    var B_checked = $('#B').is(":checked");
+    var C_checked = $('#C').is(":checked");
+    var D_checked = $('#D').is(":checked");
+
+    if(B_checked == true){
+      $("#B_incorrect").show();
+      $("#B_incorrect_hint").show();
+    }
+
+    if(D_checked == true){
+      $("#D_incorrect").show();
+      $("#D_incorrect_hint").show();
+    }
+
+    if(B_checked && D_checked){
+      $("#A_incorrect").hide();
+      $("#B_incorrect").hide();
+      $("#C_incorrect").hide();
+      $("#D_incorrect").hide();
+      $("#B_correct").show();
+      $("#D_correct").show();
+      $("#A_hint").hide();
+      $("#B_incorrect_hint").hide();
+      $("#B_correct_hint").show();
+      $("#C_hint").hide();
+      $("#D_incorrect_hint").hide();
+      $("#D_correct_hint").show();
+    }
+
+    if(C_checked == true){
+      $("#C_incorrect").show();
+      $("#C_hint").show();
+    }
+
+    if(A_checked == true){
+      $("#A_incorrect").show();
+      $("#A_hint").show();
+    }
+}
+
+
+</script>
+</body>
+</html>
