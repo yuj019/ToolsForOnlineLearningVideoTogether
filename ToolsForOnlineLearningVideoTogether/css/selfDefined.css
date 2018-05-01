@@ -1,0 +1,29 @@
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.alignVideo {
+  position: relative; /* positions out of the flow, but according to the nearest parent */
+  top: 0; right: 0; /* confuse it i guess */
+  bottom: 0; left: 0;
+  margin-left: 140px; /* make em equal */
+}
+
+.numlabel {
+  pointer-events: none;
+}
